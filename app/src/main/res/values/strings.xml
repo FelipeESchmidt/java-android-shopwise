@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Lista de Compras</string>
+    <string name="main_button_description">Adição de Item</string>
+    <string name="main_input_placeholder">Digite o item aqui</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+
+    <string name="home">Botão Home</string>
+    <string name="historic">Botão Histórico</string>
+    <string name="maps">Botão Maps</string>
+
+    <string name="historic_screen_description">ScrollView para itens do histórico</string>
+
+    <!-- CTRL + D -->
+</resources>

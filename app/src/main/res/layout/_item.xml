@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/nomeItem"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/minusButton"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/minus"
+        android:textColor="@color/gray500"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:onClick="onDecreaseQuantity" />
+
+    <TextView
+        android:id="@+id/quantidade"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text=""
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/plusButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="@string/plus"
+        android:textColor="@color/gray500"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="onIncreaseQuantity" />
+
+</LinearLayout>
