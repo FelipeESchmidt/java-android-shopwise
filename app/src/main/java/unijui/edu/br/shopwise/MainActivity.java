@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 public class MainActivity extends AppCompatActivity {
 
     private EditText inputItem;
+    private Button saveButton;
     private LinearLayout verticalLayout;
     private ListHandler productsList;
 
@@ -23,13 +24,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         inputItem = findViewById(R.id.inputItem);
+        saveButton = findViewById(R.id.saveButton);
         verticalLayout = findViewById(R.id.verticalItems);
+
+        saveButton.setVisibility(View.GONE);
     }
 
     private void renderItems(){
         LayoutInflater inflater = LayoutInflater.from(this);
 
         productsList.renderListOn(verticalLayout, inflater);
+
+        if(productsList.getProductsLength() > 0){
+            saveButton.setVisibility(View.VISIBLE);
+        }else{
+            saveButton.setVisibility(View.GONE);
+        }
     }
 
     public void onAddItem(View view) {
@@ -61,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     public void onHistoricClick(View view){
         Intent intent = new Intent(MainActivity.this, HistoricScreen.class);
         startActivity(intent);
+    }
+
+    public void onSaveClick(View view){
+        System.out.println("clique no botão");
+        System.out.println("Produtos no carrinho: " +  productsList.getProductsLength());
     }
 
 }

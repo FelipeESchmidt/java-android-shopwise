@@ -2,6 +2,7 @@
     <string name="app_name">Lista de Compras</string>
     <string name="main_button_description">Adição de Item</string>
     <string name="main_input_placeholder">Digite o item aqui</string>
+    <string name="save_button">Salvar</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
 
