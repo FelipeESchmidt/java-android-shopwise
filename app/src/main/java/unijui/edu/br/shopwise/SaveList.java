@@ -1,6 +1,5 @@
 package unijui.edu.br.shopwise;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -15,19 +14,22 @@ public class SaveList {
 
         /* Inner class that defines the table contents */
         public class FeedEntry implements BaseColumns {
-            public static final String TABLE_NAME = "compras";
-            public static final String COLUMN_NAME_TITLE = "listadecompras";
-            public static final String COLUMN_NAME_SUBTITLE = "walker";
+            public static final String COMPRA = "TABELA";
+            public static final String COMPRA_ID = "01";
+            public static final String NOME_PRODUTO = "walker";
+
+            public static final String QUANTIDADE_PRODUTO = "2";
         }
     }
 
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + FeedReaderContract.FeedEntry.COMPRA + " (" +
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + " TEXT," +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE + " TEXT)";
+                    FeedReaderContract.FeedEntry.COMPRA_ID + " INTEGER," +
+                    FeedReaderContract.FeedEntry.NOME_PRODUTO + " TEXT," +
+                    FeedReaderContract.FeedEntry.QUANTIDADE_PRODUTO + " INTEGER)";
 
-    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + SaveList.FeedReaderContract.FeedEntry.TABLE_NAME;
+    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + SaveList.FeedReaderContract.FeedEntry.COMPRA;
 
 
 

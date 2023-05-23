@@ -39,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, "alguma coisa");
-        values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE, "alguma outra coisa");
+        values.put(SaveList.FeedReaderContract.FeedEntry.COMPRA_ID, "alguma coisa");
+        values.put(SaveList.FeedReaderContract.FeedEntry.QUANTIDADE_PRODUTO, "alguma outra coisa");
+        values.put(SaveList.FeedReaderContract.FeedEntry.NOME_PRODUTO, "alguma outra coisa");
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, null, values);
+        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.COMPRA_ID, null, values);
     }
 
     private void renderItems(){
