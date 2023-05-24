@@ -3,5 +3,6 @@
     <color name="blue500">#4169E1</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray300">#F1F1F1</color>
     <color name="gray500">#464646</color>
 </resources>
