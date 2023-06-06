@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
-        System.out.println(newRowId);
+        //long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        //System.out.println(newRowId);
     }
 
     private void renderItems(){

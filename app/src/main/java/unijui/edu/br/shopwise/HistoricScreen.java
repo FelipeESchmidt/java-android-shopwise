@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class HistoricScreen extends AppCompatActivity {
 
     private LinearLayout verticalLayout;
@@ -21,21 +23,25 @@ public class HistoricScreen extends AppCompatActivity {
 
         verticalLayout = findViewById(R.id.verticalItems);
         renderHistoricList();
-        renderHistoricList();
     }
 
     public void renderHistoricList(){
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        //verticalLayout.removeAllViews();
-        View customView = inflater.inflate(R.layout._item_historic, null);
-        TextView textViewNome = customView.findViewById(R.id.listName);
-        textViewNome.setText("Lista de teste");
+        verticalLayout.removeAllViews();
 
-        TextView textViewQtd = customView.findViewById(R.id.quantityItem);
-        textViewQtd.setText("2");
+        ArrayList<ListHandler> historicItems = ((ApplicationData) this.getApplication()).getHistoricList();
 
-        verticalLayout.addView(customView);
+        for (ListHandler item : historicItems){
+            View customView = inflater.inflate(R.layout._item_historic, null);
+            TextView textViewNome = customView.findViewById(R.id.listName);
+            textViewNome.setText(item.getName());
+
+            TextView textViewQtd = customView.findViewById(R.id.quantityItem);
+            textViewQtd.setText(String.valueOf(item.getProductsLength()));
+
+            verticalLayout.addView(customView);
+        }
     }
 
     public void onListItemsClick(View view){
