@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onMapClick(View view){
+        Intent intent = new Intent(MainActivity.this, MapsScreen.class);
+        startActivity(intent);
+    }
+
     public void onSaveClick(View view){
         System.out.println("clique no botão");
         System.out.println("Produtos no carrinho: " +  productsList.getProductsLength());

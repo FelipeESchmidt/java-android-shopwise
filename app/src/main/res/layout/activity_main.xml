@@ -102,7 +102,8 @@
             android:src="@drawable/maps"
             android:contentDescription="@string/maps"
             app:tint="@color/white"
-            style="@style/menuButtonStyle" />
+            style="@style/menuButtonStyle"
+            android:onClick="onMapClick"/>
 
     </LinearLayout>
 
