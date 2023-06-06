@@ -1,9 +1,16 @@
 package unijui.edu.br.shopwise;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
         saveButton.setVisibility(View.GONE);
 
+        // Cria o canal de notificação
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        NotificationHelper.createNotificationChannel(this);
+
+        // Cria a notificação
+        Notification notification = NotificationHelper.createNotification(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 123);
+            return;
+        }
+        notificationManagerCompat.notify(1, notification);
+
+        // Exibe a notificação
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        int notificationId = (int) System.currentTimeMillis();
+        System.out.println("Chegou");
+        notificationManager.notify(notificationId, notification);
+
         //Aplique isso no lugar certo e no seu contexto :)
         SaveList.FeedReaderDbHelper dbHelper = new SaveList.FeedReaderDbHelper(getApplicationContext());
 
@@ -42,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
         values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, "alguma coisa");
         values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE, "alguma outra coisa");
 
+
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, null, values);
+        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        System.out.println(newRowId);
     }
 
     private void renderItems(){
@@ -90,8 +118,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSaveClick(View view){
-        System.out.println("clique no botão");
-        System.out.println("Produtos no carrinho: " +  productsList.getProductsLength());
+        ((ApplicationData) this.getApplication()).addHistoricItem(productsList);
+        productsList = new ListHandler("Nova Lista");
+        renderItems();
     }
 
 }
