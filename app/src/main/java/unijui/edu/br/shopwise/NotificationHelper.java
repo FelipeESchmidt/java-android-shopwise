@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 
+import androidx.core.app.ActivityCompat;
+
 public class NotificationHelper {
     private static final String CHANNEL_ID = "my_app_channel";
     private static final String CHANNEL_NAME = "My App Notifications";
