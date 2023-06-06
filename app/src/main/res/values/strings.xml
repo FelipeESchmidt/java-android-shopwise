@@ -11,6 +11,7 @@
     <string name="maps">Botão Maps</string>
 
     <string name="historic_screen_description">ScrollView para itens do histórico</string>
+    <string name="title_activity_maps_screen">MapsScreen</string>
     <string name="historic_item_edit_name">Botão de Edição de Lista</string>
 
     <!-- CTRL + D -->
