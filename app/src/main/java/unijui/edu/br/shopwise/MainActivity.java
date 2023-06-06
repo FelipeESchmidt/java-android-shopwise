@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onMapClick(View view){
+        Intent intent = new Intent(MainActivity.this, MapsScreen.class);
+        startActivity(intent);
+    }
+
     public void onSaveClick(View view){
         ((ApplicationData) this.getApplication()).addHistoricItem(productsList);
         productsList = new ListHandler("Nova Lista");
