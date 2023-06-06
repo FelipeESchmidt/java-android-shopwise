@@ -2,7 +2,10 @@ package unijui.edu.br.shopwise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -30,6 +33,18 @@ public class MainActivity extends AppCompatActivity {
         verticalLayout = findViewById(R.id.verticalItems);
 
         saveButton.setVisibility(View.GONE);
+
+        // Cria o canal de notificação
+        NotificationHelper.createNotificationChannel(this);
+
+        // Cria a notificação
+        Notification notification = NotificationHelper.createNotification(this);
+
+        // Exibe a notificação
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        int notificationId = (int) System.currentTimeMillis();
+        System.out.println("Chegou");
+        notificationManager.notify(notificationId, notification);
 
         //Aplique isso no lugar certo e no seu contexto :)
         SaveList.FeedReaderDbHelper dbHelper = new SaveList.FeedReaderDbHelper(getApplicationContext());
