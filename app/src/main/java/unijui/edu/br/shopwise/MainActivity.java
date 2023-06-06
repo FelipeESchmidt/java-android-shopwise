@@ -42,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
         values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, "alguma coisa");
         values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE, "alguma outra coisa");
 
+
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, null, values);
+        long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+        System.out.println(newRowId);
     }
 
     private void renderItems(){
@@ -90,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSaveClick(View view){
-        System.out.println("clique no botão");
-        System.out.println("Produtos no carrinho: " +  productsList.getProductsLength());
+        ((ApplicationData) this.getApplication()).addHistoricItem(productsList);
+        productsList = new ListHandler("Nova Lista");
+        renderItems();
     }
 
 }
