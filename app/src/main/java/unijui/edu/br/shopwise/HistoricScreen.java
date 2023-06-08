@@ -49,4 +49,9 @@ public class HistoricScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onMapClick(View view){
+        Intent intent = new Intent(HistoricScreen.this, MapsScreen.class);
+        startActivity(intent);
+    }
+
 }
