@@ -8,61 +8,66 @@
     android:layout_marginBottom="10dp" >
 
     <LinearLayout
-        android:layout_width="410dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/border"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="410dp"
-            android:layout_height="65dp"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
 
             <TextView
                 android:id="@+id/listName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_weight="1" />
+                android:layout_height="65dp"
+                android:layout_toStartOf="@id/editButton"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_vertical"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/editButton"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
+                android:layout_width="60dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_alignParentEnd="true"
                 android:contentDescription="@string/historic_item_edit_name"
                 app:icon="@drawable/baseline_edit_24"
-                app:iconPadding="4dp"
+                app:iconPadding="8dp"
                 app:iconTint="#000000" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp" >
 
             <TextView
                 android:id="@+id/quantityItem"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="12dp"
-                android:layout_marginBottom="12dp"
-                android:layout_weight="1" />
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="18dp"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/productText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:layout_height="40dp"
+                android:layout_marginEnd="18dp"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/quantityItem"
+                android:gravity="center_vertical"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>
