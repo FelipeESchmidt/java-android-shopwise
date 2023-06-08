@@ -1,12 +1,16 @@
 package unijui.edu.br.shopwise;
 
+import android.app.Activity;
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class NotificationHelper {
     private static final String CHANNEL_ID = "my_app_channel";
@@ -45,7 +49,6 @@ public class NotificationHelper {
 
         NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         int notificationId = (int) System.currentTimeMillis();
-        Notification notification = createNotification(context);
         notificationManager.notify(notificationId, notification);
     }
 }
