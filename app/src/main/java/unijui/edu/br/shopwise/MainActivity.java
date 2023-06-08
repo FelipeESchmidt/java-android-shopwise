@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Cria o canal de notificação
 
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         NotificationHelper.createNotificationChannel(this);
 
         // Cria a notificação
