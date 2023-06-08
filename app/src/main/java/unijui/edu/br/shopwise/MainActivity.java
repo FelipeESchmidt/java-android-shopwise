@@ -1,16 +1,11 @@
 package unijui.edu.br.shopwise;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import android.Manifest;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -44,18 +39,10 @@ public class MainActivity extends AppCompatActivity {
         NotificationHelper.createNotificationChannel(this);
 
         // Cria a notificação
-        Notification notification = NotificationHelper.createNotification(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 123);
-            return;
-        }
-        notificationManagerCompat.notify(1, notification);
+        Notification notification = NotificationHelper.createNotification(this, "Title", "Text");
 
         // Exibe a notificação
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        int notificationId = (int) System.currentTimeMillis();
-        System.out.println("Chegou");
-        notificationManager.notify(notificationId, notification);
+        NotificationHelper.sendNotification(this, notification);
 
         //Aplique isso no lugar certo e no seu contexto :)
         SaveList.FeedReaderDbHelper dbHelper = new SaveList.FeedReaderDbHelper(getApplicationContext());
