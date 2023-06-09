@@ -30,10 +30,10 @@ public class ListDAO {
 
     public static boolean saveListHandler(SQLiteDatabase db, ListHandler listToSave){
         try{
-            long tableId = saveList(db, listToSave);
+            long listId = saveList(db, listToSave);
 
             for(Product product : listToSave.getProducts()){
-                saveListItem(db, product, tableId);
+                saveListItem(db, product, listId);
             }
 
             return true;
@@ -42,8 +42,8 @@ public class ListDAO {
         }
     }
 
-    public static ArrayList<ListHandler> getAllLists(SQLiteDatabase db){
-        Map<Integer, ListHandler> lists = new HashMap<>();
+    public static ArrayList<ListViewer> getAllLists(SQLiteDatabase db){
+        Map<Integer, ListViewer> lists = new HashMap<>();
 
         Cursor cursor = db.rawQuery(DBHelper.SQL_SELECT_ALL_LISTS, null);
 
@@ -55,11 +55,11 @@ public class ListDAO {
                 @SuppressLint("Range") String productName = cursor.getString(cursor.getColumnIndex("itemName"));
                 @SuppressLint("Range") int productQuantity = cursor.getInt(cursor.getColumnIndex("itemQuantity"));
 
-                ListHandler list;
+                ListViewer list;
                 if (lists.containsKey(listId)) {
                     list = lists.get(listId);
                 } else {
-                    list = new ListHandler(listName);
+                    list = new ListViewer(listName);
                     lists.put(listId, list);
                 }
 
