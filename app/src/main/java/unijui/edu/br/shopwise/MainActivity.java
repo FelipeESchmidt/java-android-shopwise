@@ -1,7 +1,6 @@
 package unijui.edu.br.shopwise;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Notification;
 import android.content.ContentValues;
@@ -20,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button saveButton;
     private LinearLayout verticalLayout;
     private ListHandler productsList;
+
+    private DBHelper.FeedReaderDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,21 +44,8 @@ public class MainActivity extends AppCompatActivity {
         // Exibe a notificação
         NotificationHelper.sendNotification(this, notification);
 
-        //Aplique isso no lugar certo e no seu contexto :)
-        SaveList.FeedReaderDbHelper dbHelper = new SaveList.FeedReaderDbHelper(getApplicationContext());
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, "alguma coisa");
-        values.put(SaveList.FeedReaderContract.FeedEntry.COLUMN_NAME_SUBTITLE, "alguma outra coisa");
-
-
-        // Insert the new row, returning the primary key value of the new row
-        //long newRowId = db.insert(SaveList.FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
-        //System.out.println(newRowId);
+        // Criação do banco de dados
+        dbHelper = new DBHelper.FeedReaderDbHelper(getApplicationContext());
     }
 
     private void renderItems(){
@@ -109,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSaveClick(View view){
-        ((ApplicationData) this.getApplication()).addHistoricItem(productsList);
+        ListDAO.saveListHandler(dbHelper.getWritableDatabase(), productsList);
         productsList = new ListHandler("Nova Lista");
         renderItems();
     }

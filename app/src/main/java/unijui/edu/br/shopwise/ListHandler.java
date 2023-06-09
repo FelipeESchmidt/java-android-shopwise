@@ -21,6 +21,10 @@ public class ListHandler {
         return name;
     }
 
+    public ArrayList<Product> getProducts() {
+        return productList;
+    }
+
     public int getProductsLength() {
         return productList.size();
     }
