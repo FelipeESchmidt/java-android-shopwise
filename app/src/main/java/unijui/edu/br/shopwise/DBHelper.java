@@ -17,7 +17,7 @@ public class DBHelper {
         /* Inner class that defines the table contents */
         public class ListTable implements BaseColumns {
             public static final String TABLE_NAME = "list";
-            public static final String COLUMN_NAME = "nome";
+            public static final String COLUMN_NAME = "name";
         }
 
         public class ItemTable implements BaseColumns {
@@ -43,10 +43,18 @@ public class DBHelper {
 
     private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + FeedReaderContract.ListTable.TABLE_NAME;
 
+    public static final String SQL_SELECT_ALL_LISTS = "SELECT " + DBHelper.FeedReaderContract.ListTable.TABLE_NAME+"."+DBHelper.FeedReaderContract.ListTable._ID + " as listId, "+
+            DBHelper.FeedReaderContract.ListTable.TABLE_NAME + "." + DBHelper.FeedReaderContract.ListTable.COLUMN_NAME + " as listName, "+
+            DBHelper.FeedReaderContract.ItemTable.TABLE_NAME + "." + DBHelper.FeedReaderContract.ItemTable.COLUMN_NAME + " as itemName, "+
+            DBHelper.FeedReaderContract.ItemTable.TABLE_NAME + "." + DBHelper.FeedReaderContract.ItemTable.COLUMN_QUANTITY+" as itemQuantity "+
+            " FROM " + DBHelper.FeedReaderContract.ListTable.TABLE_NAME +
+            " INNER JOIN " + DBHelper.FeedReaderContract.ItemTable.TABLE_NAME +
+            " ON " + DBHelper.FeedReaderContract.ItemTable.TABLE_NAME + "." +DBHelper.FeedReaderContract.ItemTable.COLUMN_LIST_ID + " = " + DBHelper.FeedReaderContract.ListTable.TABLE_NAME + "." +DBHelper.FeedReaderContract.ListTable._ID;
+
     public static class FeedReaderDbHelper extends SQLiteOpenHelper {
         // If you change the database schema, you must increment the database version.
         public static final int DATABASE_VERSION = 1;
-        public static final String DATABASE_NAME = "shopwise.db";
+        public static final String DATABASE_NAME = "shopwise_banco.db";
 
         public FeedReaderDbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);

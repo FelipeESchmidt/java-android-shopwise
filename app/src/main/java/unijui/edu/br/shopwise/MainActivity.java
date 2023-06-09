@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSaveClick(View view){
         ListDAO.saveListHandler(dbHelper.getWritableDatabase(), productsList);
-        ((ApplicationData) this.getApplication()).addHistoricItem(productsList);
         productsList = new ListHandler("Nova Lista");
         renderItems();
     }
