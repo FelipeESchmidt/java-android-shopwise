@@ -35,14 +35,7 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setVisibility(View.GONE);
 
         // Cria o canal de notificação
-
         NotificationHelper.createNotificationChannel(this);
-
-        // Cria a notificação
-        Notification notification = NotificationHelper.createNotification(this, "Title", "Text");
-
-        // Exibe a notificação
-        NotificationHelper.sendNotification(this, notification);
 
         // Criação do banco de dados
         dbHelper = new DBHelper.FeedReaderDbHelper(getApplicationContext());
@@ -98,6 +91,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSaveClick(View view){
         ListDAO.saveListHandler(dbHelper.getWritableDatabase(), productsList);
+
+        String title = "Lista salva com sucesso!";
+        String subtitle = "Sua lista com" + productsList.getProductsLength() + "produtos foi salva e está disponível na aba de Histórico.";
+
+        // Cria a notificação
+        Notification notification = NotificationHelper.createNotification(this, title, subtitle);
+
+        // Exibe a notificação
+        NotificationHelper.sendNotification(this, notification);
+
+        // Reseta a lista
         productsList = new ListHandler("Nova Lista");
         renderItems();
     }
